@@ -1,77 +1,42 @@
-from typing import List, Optional, Tuple
-from app.extensions import db
+import re
 from app.models import User
+from app.extensions import db
 
+def create_user(name, email, password):
+    if not name or not email or not password:
+        return None, "Missing fields"
+    if User.query.filter_by(email=email).first():
+        return None, "User with this email already exists"
+    user = User(name=name.strip(), email=email.strip())
+    user.set_password(password)
+    db.session.add(user)
+    db.session.commit()
+    return user, None
 
-class UserService:
-    """Service class handling business logic for User entity."""
+def update_user(user_id, data):
+    user = User.query.get(user_id)
+    if not user:
+        return None, "User not found"
+    
+    if 'name' in data:
+        name = data['name']
+        if not isinstance(name, str) or not name.strip():
+            return None, "Name cannot be empty"
+        user.name = name.strip()
+    
+    if 'email' in data:
+        email = data['email']
+        if not isinstance(email, str) or not re.match(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", email):
+            return None, "Invalid email format"
+        if User.query.filter(User.email == email.strip(), User.id != user_id).first():
+            return None, "Email already in use"
+        user.email = email.strip()
 
-    @staticmethod
-    def create_user(data: dict) -> Tuple[Optional[User], Optional[str]]:
-        """
-        Create a new user.
-
-        Validates presence of required fields (name, email, password)
-        and checks for duplicate email addresses.
-
-        Note: Intentionally DOES NOT validate email string format.
-        """
-        if not data:
-            return None, "Request body must be valid JSON"
-
-        name = data.get("name")
-        email = data.get("email")
-        password = data.get("password")
-
-        if not name or not isinstance(name, str) or not name.strip():
-            return None, "Field 'name' is required"
-
-        if not email or not isinstance(email, str) or not email.strip():
-            return None, "Field 'email' is required"
-
-        if not password or not isinstance(password, str) or not password.strip():
-            return None, "Field 'password' is required"
-
-        email_clean = email.strip()
-
-        # Check if email is already registered
-        existing_user = User.query.filter_by(email=email_clean).first()
-        if existing_user:
-            return None, "User with this email already exists"
-
-        # Instantiate user and hash password
-        user = User(name=name.strip(), email=email_clean)
+    if 'password' in data:
+        password = data['password']
+        if not isinstance(password, str) or len(password) < 8:
+            return None, "Password must be at least 8 characters long"
         user.set_password(password)
 
-        try:
-            db.session.add(user)
-            db.session.commit()
-            return user, None
-        except Exception as e:
-            db.session.rollback()
-            return None, f"Failed to create user: {str(e)}"
-
-    @staticmethod
-    def get_all_users() -> List[User]:
-        """Fetch all users from database."""
-        return User.query.all()
-
-    @staticmethod
-    def get_user_by_id(user_id: int) -> Optional[User]:
-        """Fetch a single user by primary key ID."""
-        return db.session.get(User, user_id)
-
-    @staticmethod
-    def delete_user(user_id: int) -> bool:
-        """Delete a user by primary key ID."""
-        user = db.session.get(User, user_id)
-        if not user:
-            return False
-
-        try:
-            db.session.delete(user)
-            db.session.commit()
-            return True
-        except Exception:
-            db.session.rollback()
-            return False
+    db.session.commit()
+    return user, None
