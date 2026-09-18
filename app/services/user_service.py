@@ -1,3 +1,4 @@
+import re
 from typing import List, Optional, Tuple
 from app.extensions import db
 from app.models import User
@@ -11,10 +12,8 @@ class UserService:
         """
         Create a new user.
 
-        Validates presence of required fields (name, email, password)
-        and checks for duplicate email addresses.
-
-        Note: Intentionally DOES NOT validate email string format.
+        Validates presence of required fields (name, email, password),
+        checks email format via regex, and checks for duplicate email addresses.
         """
         if not data:
             return None, "Request body must be valid JSON"
@@ -33,6 +32,11 @@ class UserService:
             return None, "Field 'password' is required"
 
         email_clean = email.strip()
+        
+        # Email format validation
+        email_regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+        if not re.match(email_regex, email_clean):
+            return None, "Invalid email format"
 
         # Check if email is already registered
         existing_user = User.query.filter_by(email=email_clean).first()
