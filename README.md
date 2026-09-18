@@ -157,3 +157,99 @@ All baseline tests should pass out of the box:
 ## ⚠️ Important Baseline Note
 
 Email format validation is **intentionally NOT implemented** in this baseline version. The `POST /users` endpoint accepts any non-empty string as an email. Adding regex or `email-validator` format validation is reserved as the target task for DEVAA evaluation.
+
+## Changelog & Recent Updates
+
+### Allow user to update their name, email, password
+
+As a registered user, I want to update my name, email address, and password so that I can keep my account information up to date.
+
+Description
+
+The existing User Management API allows users to create and retrieve user accounts.
+
+Add an API endpoint that allows an existing user to update their profile information.
+
+The user should be able to update their name, email, password, or any combination of these fields without having to provide all three fields.
+
+The implementation should follow the existing project architecture, database access patterns, validation approach, and API response conventio
+
+**Acceptance Criteria:**
+AC1 — Update name
+
+When a valid user ID and a new name are provided:
+
+• The user's name must be updated successfully.
+• The updated value must be persisted in the database.
+• The API must return the updated user information.
+
+AC2 — Update email
+
+When a valid user ID and a valid new email address are provided:
+
+• The user's email must be updated successfully.
+• The updated email must be persisted i
+
+## Changelog & Recent Updates
+
+### Allow user to update their name, email, password
+
+As a registered user, I want to update my name, email address, and password so that I can keep my account information up to date.
+
+Description
+
+The existing User Management API allows users to create and retrieve user accounts.
+
+Add an API endpoint that allows an existing user to update their profile information.
+
+The user should be able to update their name, email, password, or any combination of these fields without having to provide all three fields.
+
+The implementation should follow the existing project architecture, database access patterns, validation approach, and API response conventio
+
+**Acceptance Criteria:**
+AC1 — Update name
+
+When a valid user ID and a new name are provided:
+
+• The user's name must be updated successfully.
+• The updated value must be persisted in the database.
+• The API must return the updated user information.
+
+AC2 — Update email
+
+When a valid user ID and a valid new email address are provided:
+
+• The user's email must be updated successfully.
+• The updated email must be persisted i
+
+## Changelog & Recent Updates
+
+### Allow user to update their name, email, password
+
+As a registered user, I want to update my name, email address, and password so that I can keep my account information up to date.
+
+Description
+
+The existing User Management API allows users to create and retrieve user accounts.
+
+Add an API endpoint that allows an existing user to update their profile information.
+
+The user should be able to update their name, email, password, or any combination of these fields without having to provide all three fields.
+
+The implementation should follow the existing project architecture, database access patterns, validation approach, and API response conventio
+
+**Acceptance Criteria:**
+AC1 — Update name
+
+When a valid user ID and a new name are provided:
+
+• The user's name must be updated successfully.
+• The updated value must be persisted in the database.
+• The API must return the updated user information.
+
+AC2 — Update email
+
+When a valid user ID and a valid new email address are provided:
+
+• The user's email must be updated successfully.
+• The updated email must be persisted i
