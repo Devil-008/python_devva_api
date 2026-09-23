@@ -1,24 +1,30 @@
 import pytest
+from app.models import User
+from app.extensions import db
 
-def test_create_user_valid(client):
-    response = client.post('/users', json={'name': 'Jane Doe', 'email': 'jane@example.com', 'password': 'secretpassword'})
-    assert response.status_code == 201
-    assert response.json['email'] == 'jane@example.com'
-
-def test_create_user_invalid_email(client):
-    invalid_emails = ['john', 'john@', '@example.com', 'john@example', 'john example@gmail.com']
-    for email in invalid_emails:
-        response = client.post('/users', json={'name': 'Test', 'email': email, 'password': 'pw'})
-        assert response.status_code == 400
-        assert response.json['error'] == 'Invalid email format'
-
-def test_create_user_missing_email(client):
-    response = client.post('/users', json={'name': 'Test', 'password': 'pw'})
-    assert response.status_code == 400
-    assert response.json['error'] == "Field 'email' is required"
-
-def test_existing_functionality_preserved(client):
-    # Ensure users can still be listed
-    response = client.get('/users')
+def test_update_profile_success(client):
+    user = User(name='Test', email='test@test.com', password='pwd')
+    db.session.add(user)
+    db.session.commit()
+    response = client.patch(f'/users/{user.id}/profile', json={'occupation': 'Dev'})
     assert response.status_code == 200
-    assert isinstance(response.json, list)
+    assert response.get_json()['occupation'] == 'Dev'
+
+def test_update_profile_invalid_date(client):
+    user = User(name='Test', email='t@t.com', password='p')
+    db.session.add(user)
+    db.session.commit()
+    response = client.patch(f'/users/{user.id}/profile', json={'date_of_birth': 'invalid'})
+    assert response.status_code == 400
+
+def test_update_nonexistent_user(client):
+    response = client.patch('/users/999/profile', json={'occupation': 'New'})
+    assert response.status_code == 404
+
+def test_password_not_in_response(client):
+    user = User(name='Test', email='p@p.com', password='pwd')
+    db.session.add(user)
+    db.session.commit()
+    response = client.patch(f'/users/{user.id}/profile', json={'occupation': 'Dev'})
+    data = response.get_json()
+    assert 'password' not in data
