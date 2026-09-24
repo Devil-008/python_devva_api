@@ -189,3 +189,177 @@ When a valid user ID and a valid new email address are provided:
 
 • The user's email must be updated successfully.
 • The updated email must be persisted i
+
+## Changelog & Recent Updates
+
+### Add additional profile fields and API for user details
+
+User Story
+
+As a registered user, I want to store and manage additional profile information such as my occupation, address, phone number, and date of birth so that my user profile contains more complete personal information.
+
+
+---
+
+Description
+
+Enhance the existing User Management application by adding the following fields to the existing users table:
+
+• occupation
+• address
+• phone_number
+• date_of_birth
+
+Create a new API that allows an existing user to add or update these profile details.
+
+The implementation must extend the existing functionality without removing, replacing, or breaking any 
+
+**Acceptance Criteria:**
+AC1 — Database Fields
+
+Add the following fields to the existing users table:
+
+Field
+
+Description
+
+occupation
+
+User's occupation
+
+address
+
+User's address
+
+phone_number
+
+User's phone number
+
+date_of_birth
+
+User's date of birth
+
+Existing user records must remain available after the schema change.
+
+
+---
+
+AC2 — New Profile API
+
+Create an API to add or update the additional profile information for an ex
+
+## Changelog & Recent Updates
+
+### Add additional profile fields and API for user details
+
+User Story
+
+As a registered user, I want to store and manage additional profile information such as my occupation, address, phone number, and date of birth so that my user profile contains more complete personal information.
+
+
+---
+
+Description
+
+Enhance the existing User Management application by adding the following fields to the existing users table:
+
+• occupation
+• address
+• phone_number
+• date_of_birth
+
+Create a new API that allows an existing user to add or update these profile details.
+
+The implementation must extend the existing functionality without removing, replacing, or breaking any 
+
+**Acceptance Criteria:**
+AC1 — Database Fields
+
+Add the following fields to the existing users table:
+
+Field
+
+Description
+
+occupation
+
+User's occupation
+
+address
+
+User's address
+
+phone_number
+
+User's phone number
+
+date_of_birth
+
+User's date of birth
+
+Existing user records must remain available after the schema change.
+
+
+---
+
+AC2 — New Profile API
+
+Create an API to add or update the additional profile information for an ex
+
+## Changelog & Recent Updates
+
+### Add additional profile fields and API for user details
+
+User Story
+
+As a registered user, I want to store and manage additional profile information such as my occupation, address, phone number, and date of birth so that my user profile contains more complete personal information.
+
+
+---
+
+Description
+
+Enhance the existing User Management application by adding the following fields to the existing users table:
+
+• occupation
+• address
+• phone_number
+• date_of_birth
+
+Create a new API that allows an existing user to add or update these profile details.
+
+The implementation must extend the existing functionality without removing, replacing, or breaking any 
+
+**Acceptance Criteria:**
+AC1 — Database Fields
+
+Add the following fields to the existing users table:
+
+Field
+
+Description
+
+occupation
+
+User's occupation
+
+address
+
+User's address
+
+phone_number
+
+User's phone number
+
+date_of_birth
+
+User's date of birth
+
+Existing user records must remain available after the schema change.
+
+
+---
+
+AC2 — New Profile API
+
+Create an API to add or update the additional profile information for an ex
