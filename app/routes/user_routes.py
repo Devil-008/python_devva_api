@@ -1,13 +1,12 @@
-from flask import Blueprint, request, jsonify
-from app.services.user_service import update_user
+from flask import Blueprint
+from app.controllers.user_controller import UserController
 
 user_bp = Blueprint('user_bp', __name__)
 
-@user_bp.route('/users/<int:user_id>', methods=['PATCH'])
-def patch_user(user_id):
-    data = request.get_json()
-    user, error = update_user(user_id, data)
-    if error:
-        status = 404 if error == 'User not found' else 400
-        return jsonify({'error': error}), status
-    return jsonify(user.to_dict()), 200
+user_bp.route('/', methods=['POST'])(UserController.create_user)
+user_bp.route('/', methods=['GET'])(UserController.get_all_users)
+user_bp.route('/<int:user_id>', methods=['GET'])(UserController.get_user_by_id)
+user_bp.route('/<int:user_id>', methods=['DELETE'])(UserController.delete_user)
+user_bp.route('/<int:user_id>/profile', methods=['PUT', 'PATCH'])(UserController.update_user_profile)
+user_bp.route('/filter', methods=['GET'])(UserController.filter_users)
+user_bp.route('/statistics', methods=['GET'])(UserController.get_statistics)

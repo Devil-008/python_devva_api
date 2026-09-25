@@ -498,3 +498,219 @@ Global Response Utility
 • The response must be returned as valid JSON.
 
 Successful
+
+## Changelog & Recent Updates
+
+### Add user statistics API
+
+User Story
+
+As an application administrator, I want to view basic user statistics so that I can understand the current user distribution in the system.
+
+
+---
+
+Description
+
+Enhance the existing User Management application by creating a new API that provides basic statistics based on the existing user data.
+
+The API should return:
+
+• Total number of users
+• Number of active users
+• Number of inactive users
+• Number of users by occupation
+
+The implementation must use the existing users table and must not modify or break existing APIs.
+
+
+---
+
+**Acceptance Criteria:**
+AC1 — Statistics API
+
+Create the following API:
+
+```
+GET /users/statistics
+```
+
+
+---
+
+AC2 — Total Users
+
+The API should return the total number of users stored in the system.
+
+Example:
+
+```
+{
+  "total_users": 10
+}
+```
+
+
+---
+
+AC3 — Active and Inactive Users
+
+The API should return the number of active and inactive users.
+
+Example:
+
+```
+{
+  "active_users": 7,
+  "inactive_users": 3
+}
+```
+
+
+---
+
+AC4 —
+
+## Changelog & Recent Updates
+
+### Add user statistics API
+
+User Story
+
+As an application administrator, I want to view basic user statistics so that I can understand the current user distribution in the system.
+
+
+---
+
+Description
+
+Enhance the existing User Management application by creating a new API that provides basic statistics based on the existing user data.
+
+The API should return:
+
+• Total number of users
+• Number of active users
+• Number of inactive users
+• Number of users by occupation
+
+The implementation must use the existing users table and must not modify or break existing APIs.
+
+
+---
+
+**Acceptance Criteria:**
+AC1 — Statistics API
+
+Create the following API:
+
+```
+GET /users/statistics
+```
+
+
+---
+
+AC2 — Total Users
+
+The API should return the total number of users stored in the system.
+
+Example:
+
+```
+{
+  "total_users": 10
+}
+```
+
+
+---
+
+AC3 — Active and Inactive Users
+
+The API should return the number of active and inactive users.
+
+Example:
+
+```
+{
+  "active_users": 7,
+  "inactive_users": 3
+}
+```
+
+
+---
+
+AC4 —
+
+## Changelog & Recent Updates
+
+### Add user statistics API
+
+User Story
+
+As an application administrator, I want to view basic user statistics so that I can understand the current user distribution in the system.
+
+
+---
+
+Description
+
+Enhance the existing User Management application by creating a new API that provides basic statistics based on the existing user data.
+
+The API should return:
+
+• Total number of users
+• Number of active users
+• Number of inactive users
+• Number of users by occupation
+
+The implementation must use the existing users table and must not modify or break existing APIs.
+
+
+---
+
+**Acceptance Criteria:**
+AC1 — Statistics API
+
+Create the following API:
+
+```
+GET /users/statistics
+```
+
+
+---
+
+AC2 — Total Users
+
+The API should return the total number of users stored in the system.
+
+Example:
+
+```
+{
+  "total_users": 10
+}
+```
+
+
+---
+
+AC3 — Active and Inactive Users
+
+The API should return the number of active and inactive users.
+
+Example:
+
+```
+{
+  "active_users": 7,
+  "inactive_users": 3
+}
+```
+
+
+---
+
+AC4 — 
