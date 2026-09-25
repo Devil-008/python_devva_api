@@ -1,45 +1,30 @@
-import os
-from flask import Flask, jsonify
-from app.extensions import db
-from config import config_by_name, Config
+from flask import Flask
+from sqlalchemy.exc import SQLAlchemyError
+from werkzeug.exceptions import HTTPException
+from app.utils.response import api_response
+from app.utils.exceptions import BaseAppException
 
-
-def create_app(config_name: str = None) -> Flask:
-    """Application factory for Flask REST API."""
+def create_app():
     app = Flask(__name__)
 
-    if config_name is None:
-        config_name = os.environ.get("FLASK_ENV", "default")
+    @app.errorhandler(BaseAppException)
+    def handle_app_exception(error):
+        return api_response(error.status_code, False, error.message, None)
 
-    config_class = config_by_name.get(config_name, Config)
-    app.config.from_object(config_class)
+    @app.errorhandler(HTTPException)
+    def handle_http_exception(error):
+        return api_response(error.code, False, error.description, None)
 
-    # Initialize extensions
-    db.init_app(app)
+    @app.errorhandler(SQLAlchemyError)
+    def handle_db_exception(error):
+        app.logger.error(f"Database Error: {str(error)}")
+        return api_response(500, False, "A database error occurred", None)
 
-    # Register Blueprints
+    @app.errorhandler(Exception)
+    def handle_generic_exception(error):
+        app.logger.error(f"Unhandled Exception: {str(error)}")
+        return api_response(500, False, "An internal server error occurred", None)
+
     from app.routes.users import users_bp
     app.register_blueprint(users_bp)
-
-    # Global Error Handlers for clean JSON API responses
-    @app.errorhandler(400)
-    def bad_request_error(error):
-        return jsonify({"error": "Bad Request", "message": str(error)}), 400
-
-    @app.errorhandler(404)
-    def not_found_error(error):
-        return jsonify({"error": "Not Found", "message": "The requested resource was not found"}), 404
-
-    @app.errorhandler(405)
-    def method_not_allowed_error(error):
-        return jsonify({"error": "Method Not Allowed", "message": "The method is not allowed for the requested URL"}), 405
-
-    @app.errorhandler(500)
-    def internal_server_error(error):
-        return jsonify({"error": "Internal Server Error", "message": "An unexpected error occurred"}), 500
-
-    # Auto-create tables in development mode if database tables don't exist
-    with app.app_context():
-        db.create_all()
-
     return app

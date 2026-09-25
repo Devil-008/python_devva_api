@@ -363,3 +363,138 @@ Existing user records must remain available after the schema change.
 AC2 — New Profile API
 
 Create an API to add or update the additional profile information for an ex
+
+## Changelog & Recent Updates
+
+### Global Exception Handler and Standard API Response
+
+Implement centralized exception handling and standardized API response format across all existing APIs
+
+🛠️ Repository & Reference Configuration
+
+Target Repo: python_devva_api
+Branch: main
+
+Reference Repo: devaa_api_ref
+Reference Branch: main
+
+User Story
+
+As an API consumer,  
+I want every API endpoint to return a consistent response structure and centralized error response,  
+so that success and failure responses can be handled predictably across the entire application.
+
+Description
+
+Implement a reusable response.py utility and centralized exception handler similar to the reference repository.
+
+**Acceptance Criteria:**
+Global Response Utility
+
+• A reusable api_response() utility must be implemented.
+• The utility must accept:
+
+• status_code
+• is_success
+• message
+• data
+• Every API response must contain exactly these standard fields:
+
+• status_code
+• is_success
+• message
+• data
+• The HTTP status code must match the status_code value in the response body.
+• The response must be returned as valid JSON.
+
+Successful
+
+## Changelog & Recent Updates
+
+### Global Exception Handler and Standard API Response
+
+Implement centralized exception handling and standardized API response format across all existing APIs
+
+🛠️ Repository & Reference Configuration
+
+Target Repo: python_devva_api
+Branch: main
+
+Reference Repo: devaa_api_ref
+Reference Branch: main
+
+User Story
+
+As an API consumer,  
+I want every API endpoint to return a consistent response structure and centralized error response,  
+so that success and failure responses can be handled predictably across the entire application.
+
+Description
+
+Implement a reusable response.py utility and centralized exception handler similar to the reference repository.
+
+**Acceptance Criteria:**
+Global Response Utility
+
+• A reusable api_response() utility must be implemented.
+• The utility must accept:
+
+• status_code
+• is_success
+• message
+• data
+• Every API response must contain exactly these standard fields:
+
+• status_code
+• is_success
+• message
+• data
+• The HTTP status code must match the status_code value in the response body.
+• The response must be returned as valid JSON.
+
+Successful
+
+## Changelog & Recent Updates
+
+### Global Exception Handler and Standard API Response
+
+Implement centralized exception handling and standardized API response format across all existing APIs
+
+🛠️ Repository & Reference Configuration
+
+Target Repo: python_devva_api
+Branch: main
+
+Reference Repo: devaa_api_ref
+Reference Branch: main
+
+User Story
+
+As an API consumer,  
+I want every API endpoint to return a consistent response structure and centralized error response,  
+so that success and failure responses can be handled predictably across the entire application.
+
+Description
+
+Implement a reusable response.py utility and centralized exception handler similar to the reference repository.
+
+**Acceptance Criteria:**
+Global Response Utility
+
+• A reusable api_response() utility must be implemented.
+• The utility must accept:
+
+• status_code
+• is_success
+• message
+• data
+• Every API response must contain exactly these standard fields:
+
+• status_code
+• is_success
+• message
+• data
+• The HTTP status code must match the status_code value in the response body.
+• The response must be returned as valid JSON.
+
+Successful
