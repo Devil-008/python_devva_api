@@ -1,26 +1,22 @@
-from app.models import User
-from app.extensions import db
-from datetime import datetime
-import re
+from app.models import db, User
+from sqlalchemy import func
 
 class UserService:
     @staticmethod
-    def update_user_profile(user_id, data):
-        user = User.query.get_or_404(user_id)
+    def get_user_statistics():
+        total = db.session.query(func.count(User.id)).scalar() or 0
+        active = db.session.query(func.count(User.id)).filter(User.status == 'active').scalar() or 0
+        inactive = db.session.query(func.count(User.id)).filter(User.status == 'inactive').scalar() or 0
         
-        if 'occupation' in data: user.occupation = data['occupation']
-        if 'address' in data: user.address = data['address']
-        
-        if 'phone_number' in data:
-            if not re.match(r'^\+?\d{10,15}$', data['phone_number']):
-                raise ValueError("Invalid phone format")
-            user.phone_number = data['phone_number']
-            
-        if 'date_of_birth' in data:
-            try:
-                user.date_of_birth = datetime.strptime(data['date_of_birth'], '%Y-%m-%d').date()
-            except ValueError:
-                raise ValueError("Invalid date format, expected YYYY-MM-DD")
-        
-        db.session.commit()
-        return user.to_dict()
+        occupation_data = db.session.query(User.occupation, func.count(User.id)).group_by(User.occupation).all()
+        occ_map = {}
+        for occ, count in occupation_data:
+            label = occ if occ and occ.strip() != '' else 'Unknown'
+            occ_map[label] = occ_map.get(label, 0) + count
+
+        return {
+            "total_users": total,
+            "active_users": active,
+            "inactive_users": inactive,
+            "users_by_occupation": occ_map
+        }
