@@ -498,3 +498,144 @@ Global Response Utility
 • The response must be returned as valid JSON.
 
 Successful
+
+## Changelog & Recent Updates
+
+### Add pagination and sorting support to User List API
+
+User Story
+
+As an application user, I want to retrieve users using pagination and sorting so that large numbers of users can be viewed efficiently.
+
+Description
+
+Enhance the existing GET /users API to support pagination and sorting.
+
+The existing API functionality must continue working when pagination and sorting parameters are not provided.
+
+**Acceptance Criteria:**
+AC1 — Pagination
+
+The GET /users API should support:
+
+```
+?page=1&limit=10
+```
+
+• page represents the page number.
+• limit represents the number of users per page.
+• Default values should be used when parameters are not provided.
+
+AC2 — Sorting
+
+The API should support sorting by:
+
+• name
+• email
+• created_at
+
+Example:
+
+```
+GET /users?sort_by=name&order=asc
+```
+
+Supported order values:
+
+```
+asc
+des
+
+## Changelog & Recent Updates
+
+### Add pagination and sorting support to User List API
+
+User Story
+
+As an application user, I want to retrieve users using pagination and sorting so that large numbers of users can be viewed efficiently.
+
+Description
+
+Enhance the existing GET /users API to support pagination and sorting.
+
+The existing API functionality must continue working when pagination and sorting parameters are not provided.
+
+**Acceptance Criteria:**
+AC1 — Pagination
+
+The GET /users API should support:
+
+```
+?page=1&limit=10
+```
+
+• page represents the page number.
+• limit represents the number of users per page.
+• Default values should be used when parameters are not provided.
+
+AC2 — Sorting
+
+The API should support sorting by:
+
+• name
+• email
+• created_at
+
+Example:
+
+```
+GET /users?sort_by=name&order=asc
+```
+
+Supported order values:
+
+```
+asc
+des
+
+## Changelog & Recent Updates
+
+### Add pagination and sorting support to User List API
+
+User Story
+
+As an application user, I want to retrieve users using pagination and sorting so that large numbers of users can be viewed efficiently.
+
+Description
+
+Enhance the existing GET /users API to support pagination and sorting.
+
+The existing API functionality must continue working when pagination and sorting parameters are not provided.
+
+**Acceptance Criteria:**
+AC1 — Pagination
+
+The GET /users API should support:
+
+```
+?page=1&limit=10
+```
+
+• page represents the page number.
+• limit represents the number of users per page.
+• Default values should be used when parameters are not provided.
+
+AC2 — Sorting
+
+The API should support sorting by:
+
+• name
+• email
+• created_at
+
+Example:
+
+```
+GET /users?sort_by=name&order=asc
+```
+
+Supported order values:
+
+```
+asc
+des
