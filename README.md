@@ -639,3 +639,20 @@ Supported order values:
 ```
 asc
 des
+
+## Changelog & Recent Updates
+
+### EXP-105 - Custom Category Management & Deletion Guardrails
+
+```
+
+### User Story
+> **As an** active budgeter,  
+> **I want to** create custom categories with tailored colors/icons and safely edit or delete unused categories,  
+> **So that** I can personalize my expense classifications while preventing accidental deletion of categories linked to existing transactions.
+
+### Background / Context
+- **Backend Vulnerability**: In `app/routes/categories.py`, `DELETE /api/v1/categories/<id>` performs `db.session.delete(category)` without checking if transactions are linked. Since `Transaction.category_id` is a foreign key, deleting an in-use category triggers a
+
+**Acceptance Criteria:**
+N/A
