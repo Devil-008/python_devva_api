@@ -639,3 +639,57 @@ Supported order values:
 ```
 asc
 des
+
+## Changelog & Recent Updates
+
+### EXP-106 - Transaction Search, Multi-Column Sorting & Server-Side Pagination
+
+```
+
+### User Story
+> **As a** user with an expanding transaction history,  
+> **I want to** search transactions by note keywords, sort columns by date or amount, and browse records via paginated controls,  
+> **So that** I can rapidly locate specific transactions and maintain optimal page performance regardless of how many transactions exist.
+
+### Background / Context
+- **Backend Scalability**: In `app/routes/transactions.py`, `GET /api/v1/transactions` loads all user records via `.all()`. As data grows, transferring thousands of unpaginated records degrades database memory and increases API 
+
+**Acceptance Criteria:**
+[ ] **AC 1 (Server-Side Pagination)**: Given a user with more than 10 transactions, when viewing the transactions page, then only the first 10 transactions load, and clicking page 2 retrieves the next 10 items via `GET /api/v1/transactions?page=2&per_page=10`.
+- [ ] **AC 2 (Debounced Search)**: Given a user types a query in the search bar, when typing pauses for 300ms, then the table refreshes dis
+
+## Changelog & Recent Updates
+
+### EXP-106 - Transaction Search, Multi-Column Sorting & Server-Side Pagination
+
+```
+
+### User Story
+> **As a** user with an expanding transaction history,  
+> **I want to** search transactions by note keywords, sort columns by date or amount, and browse records via paginated controls,  
+> **So that** I can rapidly locate specific transactions and maintain optimal page performance regardless of how many transactions exist.
+
+### Background / Context
+- **Backend Scalability**: In `app/routes/transactions.py`, `GET /api/v1/transactions` loads all user records via `.all()`. As data grows, transferring thousands of unpaginated records degrades database memory and increases API 
+
+**Acceptance Criteria:**
+[ ] **AC 1 (Server-Side Pagination)**: Given a user with more than 10 transactions, when viewing the transactions page, then only the first 10 transactions load, and clicking page 2 retrieves the next 10 items via `GET /api/v1/transactions?page=2&per_page=10`.
+- [ ] **AC 2 (Debounced Search)**: Given a user types a query in the search bar, when typing pauses for 300ms, then the table refreshes dis
+
+## Changelog & Recent Updates
+
+### EXP-106 - Transaction Search, Multi-Column Sorting & Server-Side Pagination
+
+```
+
+### User Story
+> **As a** user with an expanding transaction history,  
+> **I want to** search transactions by note keywords, sort columns by date or amount, and browse records via paginated controls,  
+> **So that** I can rapidly locate specific transactions and maintain optimal page performance regardless of how many transactions exist.
+
+### Background / Context
+- **Backend Scalability**: In `app/routes/transactions.py`, `GET /api/v1/transactions` loads all user records via `.all()`. As data grows, transferring thousands of unpaginated records degrades database memory and increases API 
+
+**Acceptance Criteria:**
+[ ] **AC 1 (Server-Side Pagination)**: Given a user with more than 10 transactions, when viewing the transactions page, then only the first 10 transactions load, and clicking page 2 retrieves the next 10 items via `GET /api/v1/transactions?page=2&per_page=10`.
+- [ ] **AC 2 (Debounced Search)**: Given a user types a query in the search bar, when typing pauses for 300ms, then the table refreshes dis
